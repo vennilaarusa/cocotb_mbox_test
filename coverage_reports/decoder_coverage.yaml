@@ -1,0 +1,65 @@
+testbench:
+  name: mbox_decoder_tb
+  description: Full input coverage testbench for MBOX decoder logic
+  created_on: 2025-07-22
+  author: latha
+  module_under_test: mbox_decoder
+
+inputs:
+  input_type: mailbox_protocol
+  message_formats:
+    - plain_text
+    - control_headers
+    - mixed_payloads
+    - fragmented_messages
+    - empty_message
+  coverage_modes:
+    - directed
+    - randomized
+    - boundary_cases
+    - error_injection
+
+testcases:
+  - id: TC_MB_001
+    description: Decode plain text mailbox message
+    input: "HelloWorld"
+    expected_output: "HelloWorld"
+    status: complete
+
+  - id: TC_MB_002
+    description: Decode control header message
+    input: "CTRL:INIT"
+    expected_output: "INIT"
+    status: complete
+
+  - id: TC_MB_003
+    description: Decode mixed payload with header and text
+    input: "HDR:MSG:Data123"
+    expected_output: "MSG:Data123"
+    status: complete
+
+  - id: TC_MB_004
+    description: Test fragmented message across cycles
+    input: ["Part1", "Part2"]
+    expected_output: "Part1Part2"
+    status: complete
+
+  - id: TC_MB_005
+    description: Empty message input
+    input: ""
+    expected_output: "Error or Null"
+    status: complete
+
+coverage_metrics:
+  functional:
+    - format-based decoding coverage
+    - transition coverage between message types
+    - error response handling
+  code:
+    - toggle coverage
+    - branch coverage
+    - FSM state coverage
+  assertion:
+    - message_valid_assert
+    - control_flag_detect_assert
+    - fragmentation_merge_assert
