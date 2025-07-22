@@ -1,11 +1,13 @@
-# 📈 Cocotb Mailbox Coverage Report
+k# 📈 Cocotb Mailbox Coverage Report
 
-**Simulation Date:** July 22, 2025  
+**Testbench:** test_mailbox_basic  
 **Simulator:** Icarus Verilog  
-**Testbench:** test_mailbox_basic
+**Date:** July 22, 2025
 
-## ✅ Features Covered
+## ✅ Covered Features
+
 - ✔️ Enqueue Basic
 - ✔️ Dequeue Basic
 
-**Overall Coverage:** 2/2 = 100%
+**Total Coverage:** 2/2 = 100%
+
